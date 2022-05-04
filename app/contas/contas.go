@@ -1,0 +1,5 @@
+package contas
+
+func CriarContas() {
+
+}
