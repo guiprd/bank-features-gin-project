@@ -1,5 +1,0 @@
-package contas
-
-func CriarContas() {
-
-}

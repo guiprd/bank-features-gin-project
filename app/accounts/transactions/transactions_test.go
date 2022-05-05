@@ -1,13 +1,13 @@
-package transacoes
+package transactions
 
 import (
-	"grillo.com.br/bank-operation/contas"
+	"grillo.com.br/bank-operation/accounts"
 	"testing"
 )
 
 func TestAccount_Depositar(t *testing.T) {
 	type fields struct {
-		ContaCorrente contas.ContaCorrente
+		ContaCorrente accounts.CheckingAccount
 	}
 	type args struct {
 		deposito float64
@@ -23,10 +23,10 @@ func TestAccount_Depositar(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			conta := &Account{
-				ContaCorrente: tt.fields.ContaCorrente,
+			account := &Account{
+				CheckingAccount: tt.fields.ContaCorrente,
 			}
-			if got := conta.Depositar(tt.args.deposito); got != tt.want {
+			if got := account.CashDeposit(tt.args.deposito); got != tt.want {
 				t.Errorf("Depositar() = %v, want %v", got, tt.want)
 			}
 		})
@@ -35,7 +35,7 @@ func TestAccount_Depositar(t *testing.T) {
 
 func TestAccount_Saque(t *testing.T) {
 	type fields struct {
-		ContaCorrente contas.ContaCorrente
+		CheckingAccount accounts.CheckingAccount
 	}
 	type args struct {
 		saque float64
@@ -51,9 +51,9 @@ func TestAccount_Saque(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			conta := &Account{
-				ContaCorrente: tt.fields.ContaCorrente,
+				CheckingAccount: tt.fields.CheckingAccount,
 			}
-			if got := conta.Saque(tt.args.saque); got != tt.want {
+			if got := conta.WithdrawMoney(tt.args.saque); got != tt.want {
 				t.Errorf("Saque() = %v, want %v", got, tt.want)
 			}
 		})
